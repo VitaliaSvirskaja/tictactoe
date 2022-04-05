@@ -1,8 +1,39 @@
 import './style.css'
 
-const app = document.querySelector<HTMLDivElement>('#app')!
 
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+type Field = "X" | "O" | ""
+const gameBoard: Field[] = [
+    "X",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+];
+
+
+let playersTurn: "X" | "O" = "O"
+
+const fields = document.getElementsByClassName("inner-field")
+Array.from(fields).forEach((field, index) => {
+    field.addEventListener("click", () => {
+        takeTurn(index)
+    })
+})
+
+
+function takeTurn(index: number) {
+    gameBoard[index] = playersTurn;
+    console.log(gameBoard[index])
+    playersTurn = playersTurn === "X" ? "O" : "X"
+    render()
+}
+
+function render() {
+    Array.from(fields).forEach((field, index) => {
+        field.innerHTML = gameBoard[index]
+    })
+}

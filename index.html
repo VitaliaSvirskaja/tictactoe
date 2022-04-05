@@ -4,10 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>TicTacToe</title>
   </head>
   <body>
-    <div id="app"></div>
+  <main>
+   <div>
+     <h1>TicTacToe</h1>
+     <button class="player-vs-player">Player vs Player</button>
+     <button class="player-vs-ai">Player vs AI</button>
+   </div>
+    <div>
+      <button class="symbol-x">X</button>
+      <button class="symbol-o">O</button>
+    </div>
+    <div id="field-container">
+      <div class="inner-field field-top-left"></div>
+      <div class="inner-field field-top-middle"></div>
+      <div class="inner-field field-top-right"></div>
+      <div class="inner-field field-middle-left"></div>
+      <div class="inner-field field-middle-middle"></div>
+      <div class="inner-field field-middle-right"></div>
+      <div class="inner-field field-bottom-left"></div>
+      <div class="inner-field field-bottom-middle"></div>
+      <div class="inner-field field-bottom-right"></div>
+    </div>
+    <button class="restart-button">Restart</button>
+  </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
