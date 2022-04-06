@@ -25,6 +25,8 @@ function generateHTMLGameBoard() {
             fieldElement.classList.add("field")
             fieldContainer?.appendChild(fieldElement)
             fieldElement.innerHTML = gameBoard[rowIndex][colIndex]
+            fieldElement.style.display="grid"
+            fieldElement.style.placeContent= "center"
             fieldElement.addEventListener("click", () => {
                 takeTurn(rowIndex, colIndex)
             })
