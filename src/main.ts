@@ -1,40 +1,48 @@
 import './style.css'
 
-const gameSize = 5;
+const gameSize = 3;
 
 type Field = "X" | "O" | ""
 
+const fieldContainer = document.querySelector("#field-container") as HTMLElement
+fieldContainer.style.gridTemplateColumns = `repeat(${gameSize},1fr)`
+fieldContainer.style.gridTemplateRows = `repeat(${gameSize},1fr)`
+
 function initGameBoard(): Field[][] {
     return Array.from(Array(gameSize), () => {
-       return new Array(gameSize).fill("");
-   })
+        return new Array(gameSize).fill("");
+    })
+
 }
 
 const gameBoard: Field[][] = initGameBoard();
+generateHTMLGameBoard()
 
 function generateHTMLGameBoard() {
-    //GameBoard Array wurde initialisiert --> muss ans HTML übergeben werden, sodass ein Spielfeld sichtbar wird
+    gameBoard.forEach((row, rowIndex) => {
+        row.forEach((_field, colIndex) => {
+            const fieldElement = document.createElement("div");
+            fieldElement.classList.add("field")
+            fieldContainer?.appendChild(fieldElement)
+            fieldElement.innerHTML = gameBoard[rowIndex][colIndex]
+            fieldElement.addEventListener("click", () => {
+                takeTurn(rowIndex, colIndex)
+            })
+        })
+    })
 }
+
 
 let playersTurn: "X" | "O" = "O"
 
-const fields = document.getElementsByClassName("inner-field")
-Array.from(fields).forEach((field, index) => {
-    field.addEventListener("click", () => {
-        takeTurn(index)
-    })
-})
-
-
-function takeTurn(index: number) {
-    gameBoard[index][index] = playersTurn;
-    console.log(gameBoard[index][index])
+function takeTurn(rowIndex: number, colIndex: number) {
+    gameBoard[rowIndex][colIndex] = playersTurn;
+    console.log(gameBoard[rowIndex][colIndex])
     playersTurn = playersTurn === "X" ? "O" : "X"
     render()
 }
 
 function render() {
-    Array.from(fields).forEach((field, index) => {
-        field.innerHTML = gameBoard[index][index]
-    })
+    fieldContainer.innerHTML = "";
+    generateHTMLGameBoard()
 }

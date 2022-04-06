@@ -18,19 +18,13 @@ h1 {
 
 #field-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
     border: 1px solid lightgrey;
     height: 15rem;
     width: 15rem;
 }
 
 
-.inner-field {
+.field {
     border: 1px solid lightgrey;
 }
 
-.selected {
-    content: "X";
-    background-color: palegreen;
-}
