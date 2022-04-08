@@ -18,7 +18,7 @@ function initGameBoard(): Field[][] {
   });
 }
 
-const gameBoard: Field[][] = initGameBoard();
+let gameBoard: Field[][] = initGameBoard();
 generateHTMLGameBoard();
 
 function generateHTMLGameBoard() {
@@ -75,3 +75,11 @@ function checkWinner(): Field {
   }
   return "";
 }
+
+const restartButton = document.querySelector(".restart-button");
+restartButton?.addEventListener("click", () => {
+  winnerSpan!.innerHTML = "Winner:";
+  gameBoard = initGameBoard();
+  console.log(gameBoard);
+  render();
+});
